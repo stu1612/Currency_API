@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default () => {
+export default ({ navigation }) => {
   const baseCurrency = 'EUR';
   const quoteCurrency = 'GBP';
   const conversionRate = '1.2345';
@@ -63,14 +63,24 @@ export default () => {
             <Input
               text={baseCurrency}
               value='123'
-              onButtonPress={() => alert('todo!')}
+              onButtonPress={() =>
+                navigation.push('CurrencyList', {
+                  title: 'Base Currency',
+                  selectedCurrency: baseCurrency,
+                })
+              }
               keyboardType='numeric'
-              onChangeText={(text) => console.log('text', text)}
+              onChangeText={() => alert('text')}
             />
             <Input
               text={quoteCurrency}
               value='123'
-              onButtonPress={() => alert('todo!')}
+              onButtonPress={() =>
+                navigation.push('CurrencyList', {
+                  title: 'Quote Currency',
+                  selectedCurrency: quoteCurrency,
+                })
+              }
               editable={false}
             />
             <Text style={styles.text}>

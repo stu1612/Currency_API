@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { Text, View, FlatList } from 'react-native';
+import { StatusBar, View, FlatList } from 'react-native';
 
-export default () => {
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import colors from '../constants/colors';
+import { CurrencyItem } from '../components/CurrencyItem';
+
+export default ({ navigation, route = {} }) => {
   const [apiData, setApiData] = useState([]);
 
   useEffect(() => {
@@ -12,16 +16,36 @@ export default () => {
         setApiData([data.base, ...Object.keys(data.rates)]);
       })
       .catch((err) => console.log(err));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const params = route.params || {};
   return (
-    <FlatList
-      data={apiData}
-      renderItem={({ item }) => (
-        <View>
-          <Text>{item}</Text>
-        </View>
-      )}
-      keyExtractor={(item) => item}
-    />
+    <View>
+      <StatusBar barStyle='dark-content' backgroundColor={colors.white} />
+      <FlatList
+        data={apiData}
+        renderItem={({ item }) => {
+          const selected = params.selectedCurrency === item;
+          return (
+            <CurrencyItem
+              style={{ backgroundColor: 'red' }}
+              text={item}
+              onPress={() => navigation.pop()}
+              rightIcon={
+                selected && (
+                  <MaterialCommunityIcons
+                    name='currency-sign'
+                    size={24}
+                    color='#9bd1e5'
+                  />
+                )
+              }
+            />
+          );
+        }}
+        keyExtractor={(item) => item}
+      />
+    </View>
   );
 };

@@ -1,6 +1,5 @@
 import React from 'react';
 
-import Home from './screens/Home';
-import CurrencyList from './screens/CurrencyList';
+import Navigation from './config/Navigation';
 
-export default () => <Home />;
+export default () => <Navigation />;
