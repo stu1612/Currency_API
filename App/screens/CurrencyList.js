@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Text, View, FlatList } from 'react-native';
 
-export const CurrencyList = () => {
+export default () => {
   const [apiData, setApiData] = useState([]);
 
   useEffect(() => {
