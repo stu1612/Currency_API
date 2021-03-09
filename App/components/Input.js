@@ -17,6 +17,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     borderRadius: 5,
   },
+  containerDisabled: {
+    backgroundColor: colors.light,
+  },
   button: {
     padding: 15,
     backgroundColor: colors.lightBlue,
@@ -37,6 +40,11 @@ const styles = StyleSheet.create({
 });
 
 export const Input = ({ text, onButtonPress, ...props }) => {
+  const containerStyles = [styles.container];
+
+  if (props.editable === false) {
+    containerStyles.push(styles.containerDisabled);
+  }
   return (
     <View style={styles.container}>
       <TouchableOpacity style={styles.button} onPress={onButtonPress}>
