@@ -6,10 +6,12 @@ import {
   Dimensions,
   Image,
   Text,
+  ScrollView,
 } from 'react-native';
+import colors from '../constants/colors';
 
 import { Input } from '../components/Input';
-import colors from '../constants/colors';
+import { Button } from '../components/Button';
 
 const screen = Dimensions.get('window');
 
@@ -17,12 +19,14 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.blue,
-    justifyContent: 'space-evenly',
   },
   logoContainer: {
     alignItems: 'center',
     justifyContent: 'center',
     // marginBottom: 20,
+  },
+  content: {
+    paddingTop: screen.height * 0.2,
   },
 
   logo: {
@@ -45,32 +49,38 @@ export default () => {
 
   return (
     <View style={styles.container}>
-      <StatusBar barStyle='light-content' backgroundColor={colors.blue} />
-      <View style={styles.logoContainer}>
-        <Image
-          source={require('../assets/images/logo.png')}
-          style={styles.logo}
-          resizeMode='contain'
-        />
-      </View>
-      <View>
-        <Input
-          text={baseCurrency}
-          value='123'
-          onButtonPress={() => alert('todo!')}
-          keyboardType='numeric'
-          onChangeText={(text) => console.log('text', text)}
-        />
-        <Input
-          text={quoteCurrency}
-          value='123'
-          onButtonPress={() => alert('todo!')}
-          editable={false}
-        />
-        <Text style={styles.text}>
-          {`1 ${baseCurrency} = ${conversionRate} ${quoteCurrency} as of ${date}`}
-        </Text>
-      </View>
+      <ScrollView>
+        <StatusBar barStyle='light-content' backgroundColor={colors.blue} />
+        <View style={styles.content}>
+          <View style={styles.logoContainer}>
+            <Image
+              source={require('../assets/images/logo.png')}
+              style={styles.logo}
+              resizeMode='contain'
+            />
+          </View>
+          <View style={{ marginTop: 100 }}>
+            <Input
+              text={baseCurrency}
+              value='123'
+              onButtonPress={() => alert('todo!')}
+              keyboardType='numeric'
+              onChangeText={(text) => console.log('text', text)}
+            />
+            <Input
+              text={quoteCurrency}
+              value='123'
+              onButtonPress={() => alert('todo!')}
+              editable={false}
+            />
+            <Text style={styles.text}>
+              {`1 ${baseCurrency} = ${conversionRate} ${quoteCurrency} as of ${date}`}
+            </Text>
+          </View>
+
+          <Button onPress={() => swapCurrencies()} />
+        </View>
+      </ScrollView>
     </View>
   );
 };

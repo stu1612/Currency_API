@@ -1,7 +1,7 @@
 export default {
-  blue: '#247ba0',
+  blue: '#9bd1e5',
   dark: '#50514f',
-  lightBlue: '#CBD4C2',
+  green: '#57a773',
   light: '#c3b299',
   white: '#fff',
   border: '#E2E2E2',
