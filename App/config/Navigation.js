@@ -4,7 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import Home from '../screens/Home';
 import CurrencyList from '../screens/CurrencyList';
-import { CurrencyContext, CurrencyContextProvider } from '../utils/Context';
+import { CurrencyContextProvider } from '../utils/Context';
 
 const MainStack = createStackNavigator();
 
