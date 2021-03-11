@@ -6,13 +6,13 @@ export const CurrencyContext = createContext();
 
 export const CurrencyContextProvider = ({ children }) => {
   const [baseCurrency, setBaseCurrency] = useState('EUR');
-  const [quoteCurrency, setQuotecurrency] = useState('GBP');
+  const [quoteCurrency, setQuoteCurrency] = useState('GBP');
   const [apiData, setApiData] = useState([]);
   const [mainData, setMainData] = useState('');
 
   const swapCurrencies = () => {
     setBaseCurrency(quoteCurrency);
-    setQuotecurrency(baseCurrency);
+    setQuoteCurrency(baseCurrency);
   };
 
   useEffect(() => {
@@ -32,7 +32,7 @@ export const CurrencyContextProvider = ({ children }) => {
     quoteCurrency,
     swapCurrencies,
     setBaseCurrency,
-    setQuotecurrency,
+    setQuoteCurrency,
     apiData,
     mainData,
   };

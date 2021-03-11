@@ -8,9 +8,11 @@ import { CurrencyItem } from '../components/CurrencyItem';
 import { CurrencyContext } from '../utils/Context';
 
 export default ({ navigation, route = {} }) => {
-  const { apiData } = useContext(CurrencyContext);
-
+  const { apiData, setBaseCurrency, setQuoteCurrency } = useContext(
+    CurrencyContext
+  );
   const params = route.params || {};
+
   return (
     <View>
       <StatusBar barStyle='dark-content' backgroundColor={colors.white} />
@@ -22,14 +24,14 @@ export default ({ navigation, route = {} }) => {
             <CurrencyItem
               style={{ backgroundColor: 'red' }}
               text={item}
-              onPress={
-                (() => {
-                  if (params.onChange) {
-                    params.onChange(item);
-                  }
-                },
-                () => navigation.pop())
-              }
+              onPress={() => {
+                if (params.isBaseCurrency) {
+                  setBaseCurrency(item);
+                } else {
+                  setQuoteCurrency(item);
+                }
+                navigation.pop();
+              }}
               rightIcon={
                 selected && (
                   <MaterialCommunityIcons

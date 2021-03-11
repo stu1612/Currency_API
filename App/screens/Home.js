@@ -46,13 +46,9 @@ const styles = StyleSheet.create({
 export default ({ navigation }) => {
   const [value, setValue] = useState('100');
   const conversionRate = '1.2345';
-  const {
-    baseCurrency,
-    quoteCurrency,
-    setBaseCurrency,
-    swapCurrencies,
-    mainData,
-  } = useContext(CurrencyContext);
+  const { baseCurrency, quoteCurrency, swapCurrencies, mainData } = useContext(
+    CurrencyContext
+  );
 
   console.log(mainData);
   return (
@@ -74,8 +70,8 @@ export default ({ navigation }) => {
               onButtonPress={() =>
                 navigation.push('CurrencyList', {
                   title: 'Base Currency',
-                  selectedCurrency: baseCurrency,
-                  onChange: (currency) => setBaseCurrency(currency),
+                  activeCurrency: baseCurrency,
+                  isBaseCurrency: true,
                 })
               }
               keyboardType='numeric'
@@ -89,7 +85,8 @@ export default ({ navigation }) => {
               onButtonPress={() =>
                 navigation.push('CurrencyList', {
                   title: 'Quote Currency',
-                  selectedCurrency: quoteCurrency,
+                  activeCurrency: quoteCurrency,
+                  isBaseCurrency: false,
                 })
               }
               editable={false}
