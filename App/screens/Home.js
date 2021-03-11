@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import {
   View,
   StyleSheet,
@@ -12,6 +12,8 @@ import colors from '../constants/colors';
 
 import { Input } from '../components/Input';
 import { Button } from '../components/Button';
+
+import { CurrencyContext } from '../utils/Context';
 
 const screen = Dimensions.get('window');
 
@@ -42,16 +44,15 @@ const styles = StyleSheet.create({
 });
 
 export default ({ navigation }) => {
-  const [baseCurrency, setBaseCurrency] = useState('EUR');
-  const [quoteCurrency, setQuotecurrency] = useState('GBP');
   const [value, setValue] = useState('100');
   const conversionRate = '1.2345';
   const date = new Date();
-
-  const swapCurrencies = () => {
-    setBaseCurrency(quoteCurrency);
-    setQuotecurrency(baseCurrency);
-  };
+  const {
+    baseCurrency,
+    quoteCurrency,
+    setBaseCurrency,
+    swapCurrencies,
+  } = useContext(CurrencyContext);
 
   return (
     <View style={styles.container}>
