@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   View,
   StyleSheet,
@@ -42,10 +42,12 @@ const styles = StyleSheet.create({
 });
 
 export default ({ navigation }) => {
-  const baseCurrency = 'EUR';
-  const quoteCurrency = 'GBP';
+  const [baseCurrency, setBaseCurrency] = useState('EUR');
+  const [quoteCurrency, setQuotecurrency] = useState('GBP');
   const conversionRate = '1.2345';
   const date = new Date();
+
+  const swapCurrencies = () => {};
 
   return (
     <View style={styles.container}>

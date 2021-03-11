@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
 export const Button = ({ onPress }) => {
   return (
     <TouchableOpacity onPress={onPress} style={styles.button}>
-      <Icon reverse name='swap' type='entypo' color='#57a773' />
+      <Icon reverse name='swap' type='entypo' color='#94cf8a' />
     </TouchableOpacity>
   );
 };
