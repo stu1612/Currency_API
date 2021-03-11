@@ -8,6 +8,7 @@ export const CurrencyContextProvider = ({ children }) => {
   const [baseCurrency, setBaseCurrency] = useState('EUR');
   const [quoteCurrency, setQuotecurrency] = useState('GBP');
   const [apiData, setApiData] = useState([]);
+  const [mainData, setMainData] = useState('');
 
   const swapCurrencies = () => {
     setBaseCurrency(quoteCurrency);
@@ -18,7 +19,8 @@ export const CurrencyContextProvider = ({ children }) => {
     fetch('https://api.exchangeratesapi.io/latest')
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        setMainData(data.date);
+        console.log(mainData);
         setApiData([data.base, ...Object.keys(data.rates)]);
       })
       .catch((err) => console.log(err));
@@ -32,6 +34,7 @@ export const CurrencyContextProvider = ({ children }) => {
     setBaseCurrency,
     setQuotecurrency,
     apiData,
+    mainData,
   };
 
   return (

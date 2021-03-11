@@ -8,19 +8,6 @@ import { CurrencyItem } from '../components/CurrencyItem';
 import { CurrencyContext } from '../utils/Context';
 
 export default ({ navigation, route = {} }) => {
-  // const [apiData, setApiData] = useState([]);
-
-  // useEffect(() => {
-  //   fetch('https://api.exchangeratesapi.io/latest')
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       console.log(data);
-  //       setApiData([data.base, ...Object.keys(data.rates)]);
-  //     })
-  //     .catch((err) => console.log(err));
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, []);
-
   const { apiData } = useContext(CurrencyContext);
 
   const params = route.params || {};

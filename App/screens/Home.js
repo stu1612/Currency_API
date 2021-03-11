@@ -46,14 +46,15 @@ const styles = StyleSheet.create({
 export default ({ navigation }) => {
   const [value, setValue] = useState('100');
   const conversionRate = '1.2345';
-  const date = new Date();
   const {
     baseCurrency,
     quoteCurrency,
     setBaseCurrency,
     swapCurrencies,
+    mainData,
   } = useContext(CurrencyContext);
 
+  console.log(mainData);
   return (
     <View style={styles.container}>
       <ScrollView>
@@ -94,7 +95,7 @@ export default ({ navigation }) => {
               editable={false}
             />
             <Text style={styles.text}>
-              {`1 ${baseCurrency} = ${conversionRate} ${quoteCurrency} as of ${date}`}
+              {`1 ${baseCurrency} = ${conversionRate} ${quoteCurrency} as of ${mainData}`}
             </Text>
           </View>
 
