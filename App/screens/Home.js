@@ -44,10 +44,14 @@ const styles = StyleSheet.create({
 export default ({ navigation }) => {
   const [baseCurrency, setBaseCurrency] = useState('EUR');
   const [quoteCurrency, setQuotecurrency] = useState('GBP');
+  const [value, setValue] = useState('100');
   const conversionRate = '1.2345';
   const date = new Date();
 
-  const swapCurrencies = () => {};
+  const swapCurrencies = () => {
+    setBaseCurrency(quoteCurrency);
+    setQuotecurrency(baseCurrency);
+  };
 
   return (
     <View style={styles.container}>
@@ -64,19 +68,22 @@ export default ({ navigation }) => {
           <View style={{ marginTop: 100 }}>
             <Input
               text={baseCurrency}
-              value='123'
+              value={value}
               onButtonPress={() =>
                 navigation.push('CurrencyList', {
                   title: 'Base Currency',
                   selectedCurrency: baseCurrency,
+                  onChange: (currency) => setBaseCurrency(currency),
                 })
               }
               keyboardType='numeric'
-              onChangeText={() => alert('text')}
+              onChangeText={(text) => setValue(text)}
             />
             <Input
               text={quoteCurrency}
-              value='123'
+              value={
+                value && `${(parseFloat(value) * conversionRate).toFixed(2)}`
+              }
               onButtonPress={() =>
                 navigation.push('CurrencyList', {
                   title: 'Quote Currency',

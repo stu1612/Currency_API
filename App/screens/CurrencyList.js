@@ -31,7 +31,14 @@ export default ({ navigation, route = {} }) => {
             <CurrencyItem
               style={{ backgroundColor: 'red' }}
               text={item}
-              onPress={() => navigation.pop()}
+              onPress={
+                (() => {
+                  if (params.onChange) {
+                    params.onChange(item);
+                  }
+                },
+                () => navigation.pop())
+              }
               rightIcon={
                 selected && (
                   <MaterialCommunityIcons
